@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1 ">
+        <title>World Population Dynamics</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src = "https://d3js.org/d3.v5.min.js"></script>
+        <script src = "https://d3js.org/d3-scale-chromatic.v1.min.js"></script>        
+    </head>
+
+    <body>
+        <h1>World Population Dynamics</h1>
+        <div class="tab">
+            <button class="links active" onclick="openTab(event, 'Scene1')">Top Countries</button>
+            <button class="links" onclick="openTab(event, 'Scene2')">Age Distribution</button>
+            <button class="links" onclick="openTab(event, 'Scene3')">Male/Female Distribution</button>
+        </div>
+
+        <div id="Scene1" class="content" style="display:block">
+            <h3>Top Countries by Population</h3>
+            <svg id = "svg1" width = "900" height = "360">   
+            </svg>
+        </div>
+
+        <div id="Scene2" class="content" style="none">
+            <header>
+                <h3>Age Distribution</h3>
+                <select id = 'country'>
+                    <option value = "world_scene2" selected = "selected">World</option>
+                    <option value = "bangladesh_scene2">Bangladesh</option>
+                    <option value = "brazil_scene2">Brazil</option>
+                    <option value = "china_scene2">China</option>
+                    <option value = "india_scene2">India</option>
+                    <option value = "indonesia_scene2">Indonesia</option>
+                    <option value = "nigeria_scene2">Nigeria</option>
+                    <option value = "pakistan_scene2">Pakistan</option>
+                    <option value = "russia_scene2">Russia</option>
+                    <option value = "us_scene2">United States</option>
+                    <option value = "roworld_scene2">Rest of World</option>
+                </select>
+            </header>
+            <svg id = "svg2" width = "900" height = "360">   
+            </svg>
+            <p></p>
+        </div>
+
+        <div id="Scene3" class="content" style="none">
+            <header>
+            <h3>Male/Female Distribution</h3>
+                <select id = 'country1'>
+                    <option value = "world_scene3" selected = "selected">World</option>
+                    <option value = "bangladesh_scene3">Bangladesh</option>
+                    <option value = "brazil_scene3">Brazil</option>
+                    <option value = "china_scene3">China</option>
+                    <option value = "india_scene3">India</option>
+                    <option value = "indonesia_scene3">Indonesia</option>
+                    <option value = "nigeria_scene3">Nigeria</option>
+                    <option value = "pakistan_scene3">Pakistan</option>
+                    <option value = "russia_scene3">Russia</option>
+                    <option value = "us_scene3">United States</option>
+                    <option value = "roworld_scene3">Rest of World</option>
+                </select>
+            </header>
+            <svg id = "svg3" width = "900" height = "360">   
+            </svg>
+            <p></p>
+        </div>
+        
+        <script src = "scripts/tab.js"></script>
+        <script src = "scripts/scene1_v1.js"></script>
+        <script src = "scripts/scene2.js"></script>
+        <script src = "scripts/scene3.js"></script>
+    </body>
+</html>
