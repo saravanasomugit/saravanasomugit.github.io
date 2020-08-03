@@ -6,26 +6,30 @@
         <title>World Population Dynamics</title>
         <link rel="stylesheet" href="css/style.css">
         <script src = "https://d3js.org/d3.v5.min.js"></script>
-        <script src = "https://d3js.org/d3-scale-chromatic.v1.min.js"></script>        
+        <script src = "https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src = "https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>        
     </head>
 
     <body>
         <h1>World Population Dynamics</h1>
         <div class="tab">
-            <button class="links active" onclick="openTab(event, 'Scene1')">Top Countries</button>
+            <button class="links active" onclick="openTab(event, 'Scene1')">%Share of Top Countries</button>
             <button class="links" onclick="openTab(event, 'Scene2')">Age Distribution</button>
-            <button class="links" onclick="openTab(event, 'Scene3')">Male/Female Distribution</button>
+            <button class="links" onclick="openTab(event, 'Scene3')">Gender Distribution</button>
         </div>
 
         <div id="Scene1" class="content" style="display:block">
-            <h3>Top Countries by Population</h3>
-            <svg id = "svg1" width = "900" height = "360">   
+            <header>
+            <h3>%Share of Top Populous Countries</h3>
+            <p></p>
+            </header>
+            <svg id = "svg1" width = "1500" height = "400">   
             </svg>
         </div>
 
         <div id="Scene2" class="content" style="none">
             <header>
-                <h3>Age Distribution</h3>
+                <h3>Age Distribution of Top Populous Countries</h3>
                 <select id = 'country'>
                     <option value = "world_scene2" selected = "selected">World</option>
                     <option value = "bangladesh_scene2">Bangladesh</option>
@@ -47,7 +51,7 @@
 
         <div id="Scene3" class="content" style="none">
             <header>
-            <h3>Male/Female Distribution</h3>
+            <h3>Gender Distribution of Top Populous Countries</h3>
                 <select id = 'country1'>
                     <option value = "world_scene3" selected = "selected">World</option>
                     <option value = "bangladesh_scene3">Bangladesh</option>
@@ -68,7 +72,7 @@
         </div>
         
         <script src = "scripts/tab.js"></script>
-        <script src = "scripts/scene1_v1.js"></script>
+        <script src = "scripts/scene1.js"></script>
         <script src = "scripts/scene2.js"></script>
         <script src = "scripts/scene3.js"></script>
     </body>

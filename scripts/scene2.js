@@ -21,7 +21,7 @@ function updateChart_Scene2(data_scene2) {
     d3.select('#svg2').select('g').remove();
     var g_scene2 = d3.select('#svg2')
     .append("g")
-    .attr("transform","translate(300,200)");
+    .attr("transform","translate(450,200)");
     var chart_scene2 = g_scene2.selectAll("path").data(pie_scene2(data_scene2));
     chart_scene2.enter()
     .append("path")
@@ -31,25 +31,92 @@ function updateChart_Scene2(data_scene2) {
     .data(pie_scene2(data_scene2))
     .enter()
     .append("text")
-    .text(function(d,i) {return labels_scene2[i]+" "+data_scene2[i]+"%";})
+    .text(function(d,i) {return labels_scene2[i]+": "+data_scene2[i]+"%";})
     .attr("transform", function(d,i) {
         var pos_scene2 = arc.centroid(d);
         switch(labels_scene2[i]) {
           case "Ages 0-14":
-              pos_scene2[0] = pos_scene2[0]-190;
+              pos_scene2[0] = pos_scene2[0]-180;
               pos_scene2[1] = pos_scene2[1]-10;
               break;      
           case "Ages 15-64":
-              pos_scene2[0] = pos_scene2[0]+90;
+              pos_scene2[0] = pos_scene2[0]+75;
               pos_scene2[1] = pos_scene2[1]-30;
               break;
           case "Ages 65 and above":
               pos_scene2[0] = pos_scene2[0]-75;
-              pos_scene2[1] = pos_scene2[1]-90;
+              pos_scene2[1] = pos_scene2[1]-80;
               break;                                        
         }
         return "translate("+pos_scene2+")";
         });    
+
+        g_scene2.selectAll("polylines")
+        .data(pie_scene2(data_scene2))
+        .enter()
+        .append("polyline")
+        .style("stroke","gray")
+        .style("fill","none")
+        .style("stroke-width","0.75px")
+        .attr("points",function(d,i){
+            var posA = arc.centroid(d);
+            var posB = arc.centroid(d);
+            var posC = arc.centroid(d);
+            switch(labels_scene2[i]) {
+                case "Ages 0-14":
+                    posA[0] = posA[0]-55;
+                    posA[1] = posA[1]+10;
+                    posB[0] = posB[0]-75;
+                    posB[1] = posB[1]+10;
+                    posC[0] = posC[0]-110;
+                    posC[1] = posC[1]-5;
+                    break;      
+                case "Ages 15-64":
+                    posA[0] = posA[0]+57;
+                    posA[1] = posA[1];
+                    posB[0] = posB[0]+70;
+                    posB[1] = posB[1];
+                    posC[0] = posC[0]+90;
+                    posC[1] = posC[1]-20;           
+                    break;
+                case "Ages 65 and above":
+                    posA[0] = posA[0]-10;
+                    posA[1] = posA[1]-55;
+                    posB[0] = posB[0]-10;
+                    posB[1] = posB[1]-55;
+                    posC[0] = posC[0]-10;
+                    posC[1] = posC[1]-75;          
+                    break;                            
+                } 
+            return [posA, posB, posC];
+        });
+        
+        g_scene2.append("text")
+        .text("Generally, age group 15-64 has")
+        .attr("transform","translate(120,-65)")
+        .style("font-size","16px")
+        .style("fill","brown");
+
+        g_scene2.append("text")
+        .text("largest share of population")
+        .attr("transform","translate(120,-45)")
+        .style("font-size","16px")
+        .style("fill","brown");
+
+        if(data_scene2 == nigeria_scene2) {
+            g_scene2.append("text")
+            .text("For Nigeria, %share of Age group 65+ is very less")
+            .attr("transform","translate(-100,-185)")
+            .style("font-size","16px")
+            .style("fill","brown");
+
+            g_scene2.append("text")
+            .text("compared to other countries in this group")
+            .attr("transform","translate(-100,-165)")
+            .style("font-size","16px")
+            .style("fill","brown");
+        }
+
 }
 
 updateChart_Scene2(world_scene2);
@@ -58,4 +125,7 @@ d3.select('#country')
   .on('change', function() {
     var data_scene2 = eval(d3.select(this).property('value'));
     updateChart_Scene2(data_scene2);
-  });
+  });  
+ 
+function midAngle_scene2(d) {
+    return d.startAngle+(d.endAngle-d.startAngle)/2; }   
